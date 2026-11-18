@@ -4,293 +4,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061326">
 <title>J.A.R.V.I.S. | Stark Industries</title>
-
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at center, #10283c 0%, #07121e 45%, #02060c 100%);
-  color: #9ceaff;
-  font-family: Arial, sans-serif;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(#1c83a522 1px, transparent 1px),
-    linear-gradient(90deg, #1c83a522 1px, transparent 1px);
-  background-size: 45px 45px;
-  pointer-events: none;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    transparent 0px,
-    transparent 3px,
-    #55dfff08 4px
-  );
-  pointer-events: none;
-}
-
-header {
-  position: absolute;
-  top: 25px;
-  left: 35px;
-  right: 35px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 17px;
-  letter-spacing: 5px;
-  color: #d8f8ff;
-}
-
-.logo span { color: #39caff; }
-
-.small {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: #4e9cb9;
-  margin-top: 7px;
-}
-
-.clock {
-  font-size: 17px;
-  letter-spacing: 3px;
-}
-
-main {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.reactor {
-  width: min(68vw, 390px);
-  aspect-ratio: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: drop-shadow(0 0 18px #00cfff66);
-}
-
-.ring {
-  position: absolute;
-  inset: 0;
-  border: 1px solid #37cfff88;
-  border-radius: 50%;
-}
-
-.ring.one {
-  border-width: 3px;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  animation: spin 12s linear infinite;
-}
-
-.ring.two {
-  inset: 18px;
-  border-style: dashed;
-  animation: spin 25s linear infinite reverse;
-}
-
-.ring.three {
-  inset: 43px;
-  border: 2px solid #35caff55;
-  border-top-color: #b7f4ff;
-  animation: spin 7s linear infinite;
-}
-
-.ring.four {
-  inset: 65px;
-  border: 1px solid #65dcff;
-  box-shadow: 0 0 20px #00bfff55;
-}
-
-.core {
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #efffff 0%, #71e2ff 20%, #078bd0 55%, #05243c 100%);
-  box-shadow: 0 0 25px #00cfff, 0 0 65px #008dff;
-  animation: breathe 3s ease-in-out infinite;
-}
-
-.info {
-  position: absolute;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #55b8da;
-  line-height: 2;
-}
-
-.left { left: 6%; top: 38%; }
-.right { right: 6%; top: 38%; text-align: right; }
-
-.status {
-  position: absolute;
-  bottom: 12%;
-  text-align: center;
-  width: 100%;
-  font-size: 11px;
-  letter-spacing: 5px;
-  color: #8deaff;
-}
-
-.status button {
-  display: block;
-  margin: 18px auto;
-  padding: 13px 25px;
-  background: #06253a88;
-  border: 1px solid #39cfff;
-  color: #a9edff;
-  letter-spacing: 3px;
-  font-size: 10px;
-  cursor: pointer;
-}
-
-footer {
-  position: absolute;
-  bottom: 22px;
-  left: 35px;
-  right: 35px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: #377b9c;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes breathe {
-  50% {
-    transform: scale(1.12);
-    box-shadow: 0 0 40px #00cfff, 0 0 90px #008dff;
-  }
-}
-
-@media(max-width:600px) {
-  .info { font-size: 7px; }
-  .left { left: 2%; }
-  .right { right: 2%; }
-  header { left: 15px; right: 15px; }
-  footer { left: 15px; right: 15px; }
-}
+:root{--cyan:#39cfff;--pale:#a9edff;--muted:#68a9c4;--line:#1c83a522;--panel:rgba(4,24,48,.72);--green:#70ffcc}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 18% 18%,#10283c 0%,#07121e 48%,#02060c 100%);color:#9ceaff;font-family:Arial,sans-serif}
+body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(#1c83a522 1px,transparent 1px),linear-gradient(90deg,#1c83a522 1px,transparent 1px);background-size:45px 45px;pointer-events:none}
+body:after{content:"";position:fixed;inset:0;background:repeating-linear-gradient(transparent 0px,transparent 3px,#55dfff08 4px);pointer-events:none}
+header{position:relative;z-index:1;padding:20px 28px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #39cfff35;background:#03101dcc}
+.logo{font-size:17px;letter-spacing:5px;color:#d8f8ff}.logo span{color:var(--cyan)}.small{font-size:9px;letter-spacing:3px;color:#4e9cb9;margin-top:7px}.clock{font-size:17px;letter-spacing:3px}
+main{position:relative;z-index:1;max-width:1500px;margin:auto;padding:22px 26px 34px}
+.topline{display:flex;align-items:center;gap:22px;margin-bottom:20px}
+.reactor-wrap{width:180px;min-width:180px;height:180px;display:grid;place-items:center;position:relative;filter:drop-shadow(0 0 15px #00cffff6)}
+.reactor{width:160px;height:160px;position:relative;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;inset:0;border:1px solid #37cfff88;border-radius:50%}
+.ring.one{border-width:3px;border-left-color:transparent;border-right-color:transparent;animation:spin 12s linear infinite}
+.ring.two{inset:12px;border-style:dashed;animation:spin 25s linear infinite reverse}
+.ring.three{inset:27px;border:2px solid #35caff55;border-top-color:#b7f4ff;animation:spin 7s linear infinite}
+.ring.four{inset:43px;border:1px solid #65dcff;box-shadow:0 0 20px #00bfff55}
+.core{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#71e2ff 20%,#078bd0 55%,#05243c 100%);box-shadow:0 0 25px #00cfff,0 0 55px #008dff;animation:breathe 3s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{50%{transform:scale(1.12);box-shadow:0 0 40px #00cfff,0 0 90px #008dff}}
+.system-summary{flex:1;display:flex;flex-wrap:wrap;gap:12px}
+.metric{flex:1;min-width:135px;padding:15px 17px;border:1px solid #39cfff42;background:linear-gradient(135deg,#0a2943aa,#041326bb);box-shadow:inset 0 0 20px #00bfff0b}
+.metric .label,.panel h2{font-size:10px;letter-spacing:3px;color:#65cbe8;text-transform:uppercase}
+.metric strong{display:block;margin-top:9px;font-size:15px;letter-spacing:1px;color:var(--pale)}
+.metric .ok{color:var(--green)}
+.dashboard{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.panel{border:1px solid #39cfff55;background:var(--panel);box-shadow:inset 0 0 25px #00bfff0a,0 8px 28px #0005;padding:18px;min-width:0}
+.panel h2{margin:0 0 15px;padding-bottom:12px;border-bottom:1px solid #39cfff35}
+.panel h2 span{float:right;color:#4e9cb9;font-size:9px}
+.event-list{display:flex;flex-direction:column;gap:9px}
+.event{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:11px 12px;background:#0b2940a8;border-left:2px solid var(--cyan)}
+.event-time{font-size:12px;color:#7de4ff;white-space:nowrap}
+.event-title{font-size:12px;color:#d5f7ff;line-height:1.4}
+.event-sub{font-size:10px;color:#639bb5;margin-top:4px}
+.empty,.loading,.error{font-size:12px;color:#80b7cc;padding:14px 4px;line-height:1.6}
+.error{color:#ff9b9b}
+.availability{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.slot{padding:13px;border:1px solid #39cfff45;background:#09243a}
+.slot strong{display:block;color:var(--green);font-size:17px;margin-bottom:5px}
+.slot span{font-size:10px;color:#78abc0;letter-spacing:1px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+button{padding:11px 16px;background:#06253a88;border:1px solid var(--cyan);color:var(--pale);letter-spacing:2px;font-size:10px;cursor:pointer}
+button:hover{background:#0b4664}
+#message{font-size:11px;letter-spacing:2px;color:var(--green);margin-top:12px;min-height:16px}
+footer{position:relative;z-index:1;padding:18px 28px 22px;display:flex;justify-content:space-between;gap:10px;font-size:9px;letter-spacing:2px;color:#377b9c;border-top:1px solid #39cfff25}
+@media(max-width:760px){header{padding:16px}.logo{font-size:13px;letter-spacing:3px}.clock{font-size:13px}.topline{gap:12px}.reactor-wrap{width:112px;min-width:112px;height:112px}.reactor{width:104px;height:104px}.core{width:30px;height:30px}.ring.three{inset:19px}.ring.four{inset:29px}.ring.two{inset:8px}.system-summary{gap:7px}.metric{min-width:105px;padding:10px}.metric .label{font-size:8px}.metric strong{font-size:12px}.dashboard{grid-template-columns:1fr}main{padding:15px 12px 25px}.panel{padding:14px}.event{grid-template-columns:78px 1fr}footer{padding:15px;flex-wrap:wrap}}
 </style>
 </head>
-
 <body>
-
 <header>
-  <div>
-    <div class="logo">STARK <span>INDUSTRIES</span></div>
-    <div class="small">ARTIFICIAL INTELLIGENCE SYSTEM</div>
-  </div>
-  <div class="clock" id="clock">00:00:00</div>
+  <div><div class="logo">STARK <span>INDUSTRIES</span></div><div class="small">ARTIFICIAL INTELLIGENCE SYSTEM</div></div>
+  <div class="clock" id="clock">--:--:--</div>
 </header>
 
 <main>
+  <section class="topline">
+    <div class="reactor-wrap" aria-label="Réacteur Arc"><div class="reactor">
+      <div class="ring one"></div><div class="ring two"></div><div class="ring three"></div><div class="ring four"></div><div class="core"></div>
+    </div></div>
+    <div class="system-summary">
+      <div class="metric"><div class="label">System status</div><strong class="ok" id="systemStatus">● INITIALIZING</strong></div>
+      <div class="metric"><div class="label">Core power</div><strong>100%</strong></div>
+      <div class="metric"><div class="label">Security</div><strong class="ok">ACTIVE</strong></div>
+      <div class="metric"><div class="label">Network</div><strong id="networkStatus">CONNECTING</strong></div>
+    </div>
+  </section>
 
-  <div class="info left">
-    SYSTEM STATUS<br>
-    <span style="color:#70ffcc">● OPERATIONAL</span><br><br>
-    CORE POWER<br>
-    100%<br><br>
-    SECURITY<br>
-    ACTIVE
-  </div>
-
-  <div class="reactor">
-    <div class="ring one"></div>
-    <div class="ring two"></div>
-    <div class="ring three"></div>
-    <div class="ring four"></div>
-    <div class="core"></div>
-  </div>
-
-  <div class="info right">
-    J.A.R.V.I.S.<br>
-    VERSION 1.0<br><br>
-    INTERFACE<br>
-    ONLINE<br><br>
-    NETWORK<br>
-    CONNECTED
-  </div>
-
-  <div class="status">
-    <div id="message">AWAITING COMMAND</div>
-    <button onclick="activate()">INITIALIZE SYSTEM</button>
-  </div>
-
+  <section class="dashboard">
+    <article class="panel">
+      <h2>Agenda CELCAT <span>COURS À VENIR</span></h2>
+      <div id="courses" class="loading">Récupération des cours...</div>
+    </article>
+    <article class="panel">
+      <h2>Agenda personnel <span>7 JOURS</span></h2>
+      <div id="personal" class="loading">Récupération des rendez-vous...</div>
+    </article>
+    <article class="panel">
+      <h2>Disponibilités <span>DEMAIN</span></h2>
+      <div id="availability" class="loading">Calcul des créneaux libres...</div>
+    </article>
+    <article class="panel">
+      <h2>Centre de commande <span>J.A.R.V.I.S.</span></h2>
+      <div class="event-title">Système de synchronisation des calendriers Stark.</div>
+      <div id="message">EN ATTENTE DE SYNCHRONISATION</div>
+      <div class="actions">
+        <button onclick="refreshDashboard()">ACTUALISER LES DONNÉES</button>
+        <button onclick="checkStatus()">TESTER LA CONNEXION</button>
+      </div>
+    </article>
+  </section>
 </main>
 
-<footer>
-  <span>STARK TECHNOLOGIES</span>
-  <span>PERSONAL AI INTERFACE</span>
-  <span>© 2026</span>
-</footer>
+<footer><span>STARK TECHNOLOGIES</span><span>PERSONAL AI INTERFACE</span><span>© 2026</span></footer>
 
 <script>
-function updateClock() {
+/*
+  URL de ton déploiement Google Apps Script.
+  Si tu redéploies le script avec une nouvelle URL, remplace uniquement cette constante.
+*/
+const API_URL = "https://script.google.com/macros/s/AKfycbx9-30m3f9k18YZksgfg1tfZ_8wwNBLwNYrGMonfZcBJfX2awwSPE2K1u4fIEu309Sb/exec";
+
+function updateClock(){
   document.getElementById("clock").textContent =
-    new Date().toLocaleTimeString("fr-FR");
+    new Date().toLocaleTimeString("fr-FR",{hour12:false});
 }
-setInterval(updateClock, 1000);
 updateClock();
+setInterval(updateClock,1000);
 
-function activate() {
-    const message = document.getElementById("message");
-    message.textContent = "CONNECTING TO J.A.R.V.I.S...";
-
-    const API_URL = "https://script.google.com/macros/s/AKfycbx9-30m3f9kl8YZksgfg1tfZ_8wwNBLwNYrGMonfZcBJfX2awWsPE2K1u4fIEu3O9Sb/exec";
-
-    const callbackName = "jarvisCallback";
-
-    window[callbackName] = function(data) {
-        if (data.status === "ONLINE") {
-            message.textContent = "J.A.R.V.I.S. ONLINE";
-        } else {
-            message.textContent = "CONNECTION ERROR";
-        }
-
-        delete window[callbackName];
-        script.remove();
+function api(action){
+  return new Promise((resolve,reject)=>{
+    const callbackName="jarvis_"+action+"_"+Date.now()+"_"+Math.floor(Math.random()*10000);
+    const script=document.createElement("script");
+    let finished=false;
+    const timeout=setTimeout(()=>{
+      cleanup();
+      reject(new Error("Délai de réponse dépassé pour "+action));
+    },15000);
+    function cleanup(){
+      if(finished)return;
+      finished=true;
+      clearTimeout(timeout);
+      delete window[callbackName];
+      script.remove();
+    }
+    window[callbackName]=(data)=>{
+      cleanup();
+      if(data && data.status==="ERROR") reject(new Error(data.message || "Erreur Apps Script"));
+      else resolve(data);
     };
-
-    const script = document.createElement("script");
-
-    script.src = API_URL
-        + "?action=status&callback="
-        + callbackName;
-
-    script.onerror = function() {
-        message.textContent = "SYSTEM CONNECTION FAILED";
-        delete window[callbackName];
-        script.remove();
+    script.onerror=()=>{
+      cleanup();
+      reject(new Error("Impossible de joindre Google Apps Script"));
     };
-
+    script.src=API_URL+"?action="+encodeURIComponent(action)+"&callback="+encodeURIComponent(callbackName);
     document.body.appendChild(script);
+  });
 }
-</script>
 
+function formatDateTime(value){
+  const d=new Date(value);
+  if(Number.isNaN(d.getTime())) return {date:"",time:""};
+  return {
+    date:d.toLocaleDateString("fr-FR",{weekday:"short",day:"2-digit",month:"2-digit"}),
+    time:d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit",hour12:false})
+  };
+}
+function escapeHtml(value){
+  return String(value ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function renderEvents(targetId,events,kind){
+  const target=document.getElementById(targetId);
+  if(!Array.isArray(events)||events.length===0){
+    target.innerHTML='<div class="empty">Aucun événement trouvé pour cette période.</div>';
+    return;
+  }
+  const sorted=[...events].sort((a,b)=>new Date(a.start||a.debut)-new Date(b.start||b.debut));
+  target.innerHTML='<div class="event-list">'+sorted.map(e=>{
+    const start=e.start||e.debut;
+    const end=e.end||e.fin;
+    const a=formatDateTime(start),b=formatDateTime(end);
+    const title=e.title||e.titre||"Événement sans titre";
+    const sub=kind==="course" ? (a.date+" · CELCAT") : (a.date+" · Personnel");
+    return '<div class="event"><div class="event-time">'+escapeHtml(a.time)+' – '+escapeHtml(b.time)+'</div><div><div class="event-title">'+escapeHtml(title)+'</div><div class="event-sub">'+escapeHtml(sub)+'</div></div></div>';
+  }).join("")+'</div>';
+}
+function renderAvailability(slots){
+  const target=document.getElementById("availability");
+  if(!Array.isArray(slots)||slots.length===0){
+    target.innerHTML='<div class="empty">Aucun créneau libre de 60 minutes ou plus demain.</div>';
+    return;
+  }
+  target.innerHTML='<div class="availability">'+slots.map(s=>
+    '<div class="slot"><strong>'+escapeHtml(s.debut)+' – '+escapeHtml(s.fin)+'</strong><span>CRÉNEAU LIBRE</span></div>'
+  ).join("")+'</div>';
+}
+async function checkStatus(){
+  const msg=document.getElementById("message");
+  msg.textContent="TEST DE CONNEXION EN COURS...";
+  try{
+    const data=await api("status");
+    const online=data && data.status==="ONLINE";
+    document.getElementById("systemStatus").textContent=online?"● OPERATIONAL":"● CHECK REQUIRED";
+    document.getElementById("networkStatus").textContent=online?"CONNECTED":"ERROR";
+    msg.textContent=online?"J.A.R.V.I.S. ONLINE":"RÉPONSE INATTENDUE";
+  }catch(err){
+    document.getElementById("systemStatus").textContent="● OFFLINE";
+    document.getElementById("networkStatus").textContent="ERROR";
+    msg.textContent="ERREUR : "+err.message;
+  }
+}
+async function refreshDashboard(){
+  const msg=document.getElementById("message");
+  msg.textContent="SYNCHRONISATION EN COURS...";
+  ["courses","personal","availability"].forEach(id=>document.getElementById(id).innerHTML='<div class="loading">Chargement...</div>');
+  try{
+    const [agenda,slots]=await Promise.all([api("agenda"),api("disponibilitesDemain")]);
+    if(!agenda || agenda.status!=="SUCCESS") throw new Error("Réponse agenda invalide");
+    renderEvents("courses",agenda.cours,"course");
+    renderEvents("personal",agenda.personnel,"personal");
+    renderAvailability(slots.disponibilites);
+    document.getElementById("systemStatus").textContent="● OPERATIONAL";
+    document.getElementById("networkStatus").textContent="CONNECTED";
+    msg.textContent="SYNCHRONISATION TERMINÉE";
+  }catch(err){
+    document.getElementById("systemStatus").textContent="● CONNECTION ERROR";
+    document.getElementById("networkStatus").textContent="ERROR";
+    msg.textContent="ERREUR : "+err.message;
+    ["courses","personal","availability"].forEach(id=>{
+      document.getElementById(id).innerHTML='<div class="error">Données indisponibles. Vérifie le déploiement Apps Script et son accès.</div>';
+    });
+  }
+}
+refreshDashboard();
+</script>
 </body>
 </html>
