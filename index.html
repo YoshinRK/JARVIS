@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J.A.R.V.I.S. | Stark Industries</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, #10283c 0%, #07121e 45%, #02060c 100%);
+  color: #9ceaff;
+  font-family: Arial, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(#1c83a522 1px, transparent 1px),
+    linear-gradient(90deg, #1c83a522 1px, transparent 1px);
+  background-size: 45px 45px;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 3px,
+    #55dfff08 4px
+  );
+  pointer-events: none;
+}
+
+header {
+  position: absolute;
+  top: 25px;
+  left: 35px;
+  right: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 17px;
+  letter-spacing: 5px;
+  color: #d8f8ff;
+}
+
+.logo span { color: #39caff; }
+
+.small {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #4e9cb9;
+  margin-top: 7px;
+}
+
+.clock {
+  font-size: 17px;
+  letter-spacing: 3px;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.reactor {
+  width: min(68vw, 390px);
+  aspect-ratio: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 18px #00cfff66);
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #37cfff88;
+  border-radius: 50%;
+}
+
+.ring.one {
+  border-width: 3px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: spin 12s linear infinite;
+}
+
+.ring.two {
+  inset: 18px;
+  border-style: dashed;
+  animation: spin 25s linear infinite reverse;
+}
+
+.ring.three {
+  inset: 43px;
+  border: 2px solid #35caff55;
+  border-top-color: #b7f4ff;
+  animation: spin 7s linear infinite;
+}
+
+.ring.four {
+  inset: 65px;
+  border: 1px solid #65dcff;
+  box-shadow: 0 0 20px #00bfff55;
+}
+
+.core {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #efffff 0%, #71e2ff 20%, #078bd0 55%, #05243c 100%);
+  box-shadow: 0 0 25px #00cfff, 0 0 65px #008dff;
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.info {
+  position: absolute;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #55b8da;
+  line-height: 2;
+}
+
+.left { left: 6%; top: 38%; }
+.right { right: 6%; top: 38%; text-align: right; }
+
+.status {
+  position: absolute;
+  bottom: 12%;
+  text-align: center;
+  width: 100%;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #8deaff;
+}
+
+.status button {
+  display: block;
+  margin: 18px auto;
+  padding: 13px 25px;
+  background: #06253a88;
+  border: 1px solid #39cfff;
+  color: #a9edff;
+  letter-spacing: 3px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+footer {
+  position: absolute;
+  bottom: 22px;
+  left: 35px;
+  right: 35px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #377b9c;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 40px #00cfff, 0 0 90px #008dff;
+  }
+}
+
+@media(max-width:600px) {
+  .info { font-size: 7px; }
+  .left { left: 2%; }
+  .right { right: 2%; }
+  header { left: 15px; right: 15px; }
+  footer { left: 15px; right: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <div class="logo">STARK <span>INDUSTRIES</span></div>
+    <div class="small">ARTIFICIAL INTELLIGENCE SYSTEM</div>
+  </div>
+  <div class="clock" id="clock">00:00:00</div>
+</header>
+
+<main>
+
+  <div class="info left">
+    SYSTEM STATUS<br>
+    <span style="color:#70ffcc">● OPERATIONAL</span><br><br>
+    CORE POWER<br>
+    100%<br><br>
+    SECURITY<br>
+    ACTIVE
+  </div>
+
+  <div class="reactor">
+    <div class="ring one"></div>
+    <div class="ring two"></div>
+    <div class="ring three"></div>
+    <div class="ring four"></div>
+    <div class="core"></div>
+  </div>
+
+  <div class="info right">
+    J.A.R.V.I.S.<br>
+    VERSION 1.0<br><br>
+    INTERFACE<br>
+    ONLINE<br><br>
+    NETWORK<br>
+    CONNECTED
+  </div>
+
+  <div class="status">
+    <div id="message">AWAITING COMMAND</div>
+    <button onclick="activate()">INITIALIZE SYSTEM</button>
+  </div>
+
+</main>
+
+<footer>
+  <span>STARK TECHNOLOGIES</span>
+  <span>PERSONAL AI INTERFACE</span>
+  <span>© 2026</span>
+</footer>
+
+<script>
+function updateClock() {
+  document.getElementById("clock").textContent =
+    new Date().toLocaleTimeString("fr-FR");
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+function activate() {
+  document.getElementById("message").textContent =
+    "SYSTEM INITIALIZED";
+}
+</script>
+
+</body>
+</html>
