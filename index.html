@@ -50,10 +50,69 @@ button{padding:11px 16px;background:#06253a88;border:1px solid var(--cyan);color
 button:hover{background:#0b4664}
 #message{font-size:11px;letter-spacing:2px;color:var(--green);margin-top:12px;min-height:16px}
 footer{position:relative;z-index:1;padding:18px 28px 22px;display:flex;justify-content:space-between;gap:10px;font-size:9px;letter-spacing:2px;color:#377b9c;border-top:1px solid #39cfff25}
+
+/* Écran d'accueil J.A.R.V.I.S. */
+#splash{
+  position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:28px 18px;
+  background:radial-gradient(ellipse at center,#10324b 0%,#071522 48%,#02060c 100%);
+  transition:opacity .8s ease,visibility .8s ease;
+}
+#splash::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(#1c83a522 1px,transparent 1px),linear-gradient(90deg,#1c83a522 1px,transparent 1px);
+  background-size:45px 45px;
+}
+#splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.splash-brand,.splash-sub,.splash-reactor-wrap,.splash-status,.launch-button{position:relative;z-index:1}
+.splash-brand{font-size:clamp(18px,3vw,25px);letter-spacing:7px;color:#d8f8ff}
+.splash-brand span{color:var(--cyan)}
+.splash-sub{font-size:10px;letter-spacing:4px;color:#68a9c4;margin-top:10px}
+.splash-reactor-wrap{
+  width:min(62vw,330px);height:min(62vw,330px);display:grid;place-items:center;
+  margin:34px 0 25px;filter:drop-shadow(0 0 24px #00cffff6);
+}
+.splash-reactor{width:100%;height:100%;position:relative;display:grid;place-items:center}
+.splash-reactor .ring{border-color:#37cfffaa}
+.splash-reactor .ring.two{inset:8%;border-width:2px}
+.splash-reactor .ring.three{inset:19%;border-width:3px}
+.splash-reactor .ring.four{inset:31%;border-width:2px;box-shadow:0 0 30px #00bfff77}
+.splash-reactor .core{width:22%;height:22%;box-shadow:0 0 35px #00cfff,0 0 90px #008dff}
+.splash-status{font-size:10px;letter-spacing:4px;color:#70ffcc;margin-bottom:22px}
+.launch-button{
+  padding:16px 28px;min-width:230px;background:#06253acc;border:1px solid var(--cyan);
+  color:var(--pale);font-size:11px;letter-spacing:3px;cursor:pointer;
+  box-shadow:0 0 22px #00bfff22;transition:background .2s,box-shadow .2s,transform .2s;
+}
+.launch-button:hover{background:#0b4664;box-shadow:0 0 30px #00bfff66;transform:translateY(-2px)}
+#splash.launching .splash-reactor .ring{animation-duration:.45s!important}
+#splash.launching .splash-reactor .core{animation-duration:.45s}
+#appShell{opacity:0;visibility:hidden;transition:opacity .8s ease}
+#appShell.ready{opacity:1;visibility:visible}
+@media(max-width:600px){
+  .splash-brand{letter-spacing:4px}.splash-sub{letter-spacing:2px}
+  .splash-reactor-wrap{width:min(72vw,290px);height:min(72vw,290px);margin:28px 0 22px}
+}
+
 @media(max-width:760px){header{padding:16px}.logo{font-size:13px;letter-spacing:3px}.clock{font-size:13px}.topline{gap:12px}.reactor-wrap{width:112px;min-width:112px;height:112px}.reactor{width:104px;height:104px}.core{width:30px;height:30px}.ring.three{inset:19px}.ring.four{inset:29px}.ring.two{inset:8px}.system-summary{gap:7px}.metric{min-width:105px;padding:10px}.metric .label{font-size:8px}.metric strong{font-size:12px}.dashboard{grid-template-columns:1fr}main{padding:15px 12px 25px}.panel{padding:14px}.event{grid-template-columns:78px 1fr}footer{padding:15px;flex-wrap:wrap}}
 </style>
 </head>
 <body>
+<div id="splash">
+  <div class="splash-brand">STARK <span>INDUSTRIES</span></div>
+  <div class="splash-sub">ARTIFICIAL INTELLIGENCE SYSTEM</div>
+  <div class="splash-reactor-wrap" aria-label="Réacteur Arc">
+    <div class="splash-reactor">
+      <div class="ring one"></div><div class="ring two"></div>
+      <div class="ring three"></div><div class="ring four"></div>
+      <div class="core"></div>
+    </div>
+  </div>
+  <div class="splash-status" id="splashStatus">SYSTEM STANDBY · READY</div>
+  <button class="launch-button" id="launchButton" onclick="startSystem()">INITIALISER J.A.R.V.I.S.</button>
+</div>
+
+<div id="appShell">
 <header>
   <div><div class="logo">STARK <span>INDUSTRIES</span></div><div class="small">ARTIFICIAL INTELLIGENCE SYSTEM</div></div>
   <div class="clock" id="clock">--:--:--</div>
@@ -98,6 +157,8 @@ footer{position:relative;z-index:1;padding:18px 28px 22px;display:flex;justify-c
 </main>
 
 <footer><span>STARK TECHNOLOGIES</span><span>PERSONAL AI INTERFACE</span><span>© 2026</span></footer>
+
+</div><!-- /appShell -->
 
 <script>
 /*
@@ -217,7 +278,23 @@ async function refreshDashboard(){
     });
   }
 }
-refreshDashboard();
+
+function startSystem(){
+  const splash=document.getElementById("splash");
+  const button=document.getElementById("launchButton");
+  const status=document.getElementById("splashStatus");
+  if(button.disabled) return;
+  button.disabled=true;
+  button.textContent="CONNEXION EN COURS...";
+  status.textContent="ARC REACTOR · POWERING UP";
+  splash.classList.add("launching");
+
+  window.setTimeout(()=>{
+    document.getElementById("appShell").classList.add("ready");
+    splash.classList.add("hidden");
+    refreshDashboard();
+  },1100);
+}
 </script>
 </body>
 </html>
